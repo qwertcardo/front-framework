@@ -1,0 +1,18 @@
+<form #form="ngForm" class="form-login">
+
+    <h1 class="text-center my-2">Login</h1>
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" [(ngModel)]="username" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" [(ngModel)]="password" class="form-control" required>
+    </div>
+
+    <button type="button" class="btn btn-outline-secondary mt-3" [disabled]="form.form.invalid" (click)="login()">login</button>
+
+    <span class="mt-2 text-center">Not a member? <a [routerLink]="['/register']">Register</a></span>
+
+</form>

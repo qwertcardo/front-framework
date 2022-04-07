@@ -1,0 +1,12 @@
+.form-login {
+    width: 20%;
+    height: 100%;
+    
+    min-width: 280px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin: auto;
+}

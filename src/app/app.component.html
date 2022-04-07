@@ -1,0 +1,22 @@
+<div class="page-scope">
+  <div class="header-scope">
+    <mat-toolbar>
+      <div class="row justify-content-between full-width">
+        <div class="col-sm-6">
+          <span>Desafio Framework</span>
+        </div>
+        <div class="col-sm-6 text-right">
+          <div *ngIf="isLogged">
+            <span class="mx-2">Bem vindo {{ user.name }}</span>
+            <button mat-icon-button title="logout" (click)="logout()">
+              <mat-icon>logout</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+  <div class="content-scope">
+    <router-outlet></router-outlet>
+  </div>
+</div>

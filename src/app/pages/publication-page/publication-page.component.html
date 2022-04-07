@@ -1,0 +1,36 @@
+<div *ngIf="publication" class="edit-heigth">
+    <div class="custom-flex">
+        <mat-card class="context-parameters">
+            <mat-card-header>
+                <mat-card-title>{{ publication.title }}</mat-card-title>
+                <mat-card-subtitle>by {{ publication?.creator?.name }} at {{ formatDate(publication.creationDate) }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <p class="text-center">
+                    {{ publication.content }}
+                </p>
+            </mat-card-content>
+            <mat-card-actions class="fixed-actions">
+                <button mat-icon-button (click)="forum(publication)" title="{{ publication?.comments?.length }} commentaries over this article">
+                    <mat-icon>forum</mat-icon>
+                </button>
+
+                <button mat-icon-button title="visualized by {{ publication.visualizations }} times">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                
+                <button *ngIf="!liked" (click)="like(publication)" mat-icon-button title="liked by {{ publication?.likes?.length }} users">
+                    <mat-icon>favorite_border</mat-icon>
+                </button>
+                <button *ngIf="liked" (click)="dislike(publication)" mat-icon-button title="liked by {{ publication?.likes?.length }} users includes you">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+
+                <button *ngIf="plicationOwner(publication)" (click)="delete(publication)" mat-icon-button title="Delete your publication">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="full-width">
+    <div *ngIf="page && page.content.length">
+        <div *ngFor="let publication of page.content" class="mx-4">
+            <mat-card class="my-4 cursor-pointer" (click)="details(publication)" title="Click to see full article {{ publication.title }} ">
+                <mat-card-title>{{ publication.title }}</mat-card-title>
+                <mat-card-subtitle>by {{ publication?.creator?.name }} at {{ formatDate(publication.creationDate) }}</mat-card-subtitle>
+
+                <mat-card-actions>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span>{{ shortPreviewArticle(publication) }}...</span>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <button mat-icon-button title="{{ publication?.comments?.length }} commentaries over this article">
+                                <mat-icon>forum</mat-icon>
+                            </button>
+
+                            <button mat-icon-button title="visualized by {{ publication.visualizations }} times">
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                            
+                            <button *ngIf="!likedByUser(publication)" mat-icon-button title="liked by {{ publication?.likes?.length }} users">
+                                <mat-icon>favorite_border</mat-icon>
+                            </button>
+                            <button *ngIf="likedByUser(publication)" mat-icon-button title="liked by {{ publication?.likes?.length }} users includes you">
+                                <mat-icon>favorite</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-card-actions>
+              </mat-card>
+        </div>
+    </div>
+    <div class="lower-content full-width">
+        <mat-paginator [length]="length" [pageSize]="size" [pageSizeOptions]="[5, 10, 25]" (page)="pageEvent($event)"></mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+.lower-content {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
