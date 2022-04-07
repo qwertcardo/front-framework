@@ -10,6 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -22,13 +23,14 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     CommonModule,
+    ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
     MatPaginatorModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ]
 })
 export class PagesModule { }

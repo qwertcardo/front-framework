@@ -1,7 +1,7 @@
 import { PublicationServiceService } from './../../services/publication-service.service';
 import { Page } from './../../interfaces/page.interface';
 import { Publication } from './../../model/publication.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 
@@ -20,6 +20,16 @@ export class MainPageComponent implements OnInit {
   constructor(private publicationService: PublicationServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    this.reload()
+
+    this.publicationService.reloadSubject.subscribe(
+      (_) => {
+        this.reload();
+      }
+    );
+  }
+
+  reload(): void {
     const event: PageEvent = {
       length: 0,
       pageIndex: 0,

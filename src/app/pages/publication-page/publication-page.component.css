@@ -15,10 +15,18 @@
     width: 80%;
 }
 
-.fixed-actions {
+.right-fixed-actions {
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 40vh;
     right: 6vh;
+}
+
+.left-fixed-actions {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 45vh;
+    left: 6vh;
 }

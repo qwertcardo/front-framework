@@ -1,4 +1,9 @@
 <div *ngIf="publication" class="edit-heigth">
+    <div class="row mx-5" style="width: 90%;">
+        <button mat-icon-button (click)="return()" title="return">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
     <div class="custom-flex">
         <mat-card class="context-parameters">
             <mat-card-header>
@@ -11,7 +16,14 @@
                     {{ publication.content }}
                 </p>
             </mat-card-content>
-            <mat-card-actions class="fixed-actions">
+
+            <mat-card-actions class="left-fixed-actions">
+                <button (click)="galery(publication)" mat-icon-button title="View Publication Galery">
+                    <mat-icon>collections</mat-icon>
+                </button>
+            </mat-card-actions>
+
+            <mat-card-actions class="right-fixed-actions">
                 <button mat-icon-button (click)="forum(publication)" title="{{ publication?.comments?.length }} commentaries over this article">
                     <mat-icon>forum</mat-icon>
                 </button>
@@ -27,7 +39,7 @@
                     <mat-icon>favorite</mat-icon>
                 </button>
 
-                <button *ngIf="plicationOwner(publication)" (click)="delete(publication)" mat-icon-button title="Delete your publication">
+                <button *ngIf="publicationOwner(publication)" (click)="delete(publication)" mat-icon-button title="Delete your publication">
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-card-actions>

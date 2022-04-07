@@ -2,10 +2,15 @@
   <div class="header-scope">
     <mat-toolbar>
       <div class="row justify-content-between full-width">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <span>Desafio Framework</span>
         </div>
-        <div class="col-sm-6 text-right">
+        <div class="col-sm-4 text-center">
+          <button mat-icon-button title="Create a Publication" (click)="create()">
+            <mat-icon>add_circle_outline</mat-icon>
+          </button>
+        </div>
+        <div class="col-sm-4 text-right">
           <div *ngIf="isLogged">
             <span class="mx-2">Bem vindo {{ user.name }}</span>
             <button mat-icon-button title="logout" (click)="logout()">

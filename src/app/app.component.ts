@@ -1,8 +1,10 @@
+import { MatDialog } from '@angular/material/dialog';
 import { AuthServiceService } from './services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from './model/user.model';
 import { Router } from '@angular/router';
 import { StorageServiceService } from './services/storage-service.service';
+import { PublicationDialogComponent } from './components/publication-dialog/publication-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,7 @@ export class AppComponent implements OnInit {
   user: User = new User();
   isLogged = false;
 
-  constructor(private authService: AuthServiceService, private storageService: StorageServiceService, private router: Router) {
+  constructor(private authService: AuthServiceService, private storageService: StorageServiceService, private router: Router, private matDialog: MatDialog) {
     this.authService.observeAuthChanges().subscribe(
       (authenticated) => {
         this.isLogged = authenticated;
@@ -37,6 +39,19 @@ export class AppComponent implements OnInit {
       this.user = this.storageService.getUser()!;
       this.isLogged = true;
     }
+  }
+
+  create(): void {
+    this.matDialog.open(PublicationDialogComponent, {
+      height: '80%',
+      width: '80%',
+      minWidth: '260px'
+    })
+    .afterClosed().subscribe(
+      (publication) => {
+        
+      }
+    );
   }
 
   logout(): void {

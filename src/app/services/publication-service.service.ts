@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -12,6 +12,7 @@ import { User } from '../model/user.model';
   providedIn: 'root'
 })
 export class PublicationServiceService {
+  public reloadSubject: Subject<void> = new Subject();
 
   constructor(private http: HttpClient, private authService: AuthServiceService, private storageService: StorageServiceService) { }
 
@@ -37,13 +38,17 @@ export class PublicationServiceService {
     return this.http.get<Publication>(`${environment.GATEWAY_API}/${environment.CONSUMER_SERVICE_CONTEXT}/publication/${id}`);
   }
 
+  publish(publication: Publication): Observable<any> {
+    return this.http.post(`${environment.GATEWAY_API}/${environment.PRODUCER_SERVICE_CONTEXT}/publish/publication`, publication);
+  }
+
   delete(id: number): Observable<any> {
     return this.http.delete(`${environment.GATEWAY_API}/${environment.PRODUCER_SERVICE_CONTEXT}/delete/publication`, {body: new Publication(id)});
   }
 
   visualize(id: number): void {
     this.http.post(`${environment.GATEWAY_API}/${environment.PRODUCER_SERVICE_CONTEXT}/visualization`, new Publication(id))
-    .subscribe((_) => console.log('Publication: ' + id + 'visualized!'));
+    .subscribe((_) => console.log('Publication: ' + id + ' visualized!'));
   }
 
   likedByUser(publication: Publication): boolean {
@@ -55,5 +60,13 @@ export class PublicationServiceService {
       return false;
     }
     return false;
+  }
+
+  comment(publication: Publication): Observable<any> {
+    return this.http.post(`${environment.GATEWAY_API}/${environment.PRODUCER_SERVICE_CONTEXT}/publish/comment`, publication)
+  }
+
+  deleteComment(id: number): Observable<any> {
+    return this.http.delete(`${environment.GATEWAY_API}/${environment.PRODUCER_SERVICE_CONTEXT}/delete/comment`, {body: new Publication(id)})
   }
 }

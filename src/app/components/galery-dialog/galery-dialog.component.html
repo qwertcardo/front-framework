@@ -1,0 +1,17 @@
+<div class="edit-heigth">
+    <div class="row mx-5" style="width: 90%;">
+        <button mat-icon-button (click)="return()" title="return">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+
+    <div style="background-color: gray;" class="carrousel flex-container justify-content-center align-items-center">
+        <ngb-carousel *ngIf="images">
+            <ng-template *ngFor="let imagem of images" ngbSlide>
+              <div class="picsum-img-wrapper wrapper">
+                <img [src]="imagem" style="height: 600px; width: 400px;">
+              </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+</div>

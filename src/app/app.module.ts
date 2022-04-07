@@ -20,6 +20,7 @@ import { AuthGuard } from './handlers/auth.guard';
 import { LoggedGuard } from './handlers/logged.guard';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export const AppRoutes: Route[] = [
   {
@@ -63,7 +64,8 @@ export const AppRoutes: Route[] = [
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    RouterModule.forRoot(AppRoutes)
+    MatDialogModule,
+    RouterModule.forRoot(AppRoutes),
   ],
   providers: [
     AuthGuard,

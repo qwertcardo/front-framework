@@ -1,0 +1,48 @@
+<div class="full-width">
+    <div class="row">
+        <div class="col-sm-10">
+            <h2>Forum</h2>
+        </div>
+        <div class="col-sm-2 text-right">
+            <button (click)="disclosure()" mat-icon-button>
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div *ngFor="let comment of publication?.comments">
+        <mat-card class="my-4">
+            <mat-card-subtitle>by {{ comment?.creator?.name }} at {{ formatDate(comment.creationDate) }}</mat-card-subtitle>
+
+            <mat-card-actions>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span>{{ comment?.content }}</span>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button *ngIf="!likedByUser(comment)" (click)="like(comment)" mat-icon-button title="liked by {{ comment?.likes?.length }} users">
+                            <mat-icon>favorite_border</mat-icon>
+                        </button>
+                        <button *ngIf="likedByUser(comment)" (click)="dislike(comment)" mat-icon-button title="liked by {{ comment?.likes?.length }} users includes you">
+                            <mat-icon>favorite</mat-icon>
+                        </button>
+
+                        <button *ngIf="publicationOwner(comment)" (click)="delete(comment)" mat-icon-button title="Delete your comment">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+<form #form="ngForm" class="full-width">
+    <div class="form-group">
+        <label for="text">Comment this Forum</label>
+        <textarea class="form-control" id="text" name="text" [(ngModel)]="text" rows="3"></textarea>
+    </div>
+
+    <button type="button" class="btn btn-outline-secondary mt-3" (click)="publish()" title="Send Commentary">
+        Comment
+    </button>
+</form>
